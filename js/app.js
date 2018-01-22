@@ -12,4 +12,15 @@ $(function() {
 	 * of the specific view you're working with (see exampleView.js).
 	 */
 
+
+    var starter = model.getAllDishes('starter')[0];
+
+    model.addDishToMenu(starter.id);
+
+    console.log(starter);
+
+    console.log(model.getTotalMenuPrice());
+    console.log(model.setNumberOfGuests(2));
+    console.log(model.getTotalMenuPrice());
+
 });
