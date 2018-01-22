@@ -1,9 +1,16 @@
 $(function() {
 	//We instantiate our model
 	var model = new DinnerModel();
-	
-	// And create the instance of ExampleView
-	var exampleView = new ExampleView($("#exampleView"));
+
+    //Create the views
+    var selectDishView = new SelectDishView(selectDishElement = $("#select-dish"), model);
+    var dinnerMenuView = new DinnerMenuView(dinnerMenuElement = $("#dinner-menu"), model);
+    var dinnerOverviewView = new DinnerOverviewView(dinnerOverviewElement = $("#dinner-overview"), model);
+    var dinnerPrintoutView = new DinnerPrintoutView(dinnerPrintoutElement = $("#dinner-printout"), model);
+    var homeView = new HomeView(homeElement = $("#home"), model);
+
+    //start with showing the home view
+    homeElement.show();
 
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to
@@ -13,14 +20,5 @@ $(function() {
 	 */
 
 
-    var starter = model.getAllDishes('starter')[0];
-
-    model.addDishToMenu(starter.id);
-
-    console.log(starter);
-
-    console.log(model.getTotalMenuPrice());
-    console.log(model.setNumberOfGuests(2));
-    console.log(model.getTotalMenuPrice());
 
 });

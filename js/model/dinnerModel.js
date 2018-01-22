@@ -1,7 +1,7 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
 
-    this.numberOfGuests = 1;
+    this.numberOfGuests = 2;
 
     //The selected dishes aka. "full menu"
     this.selectedDishes = [];
@@ -387,5 +387,5 @@ var DinnerModel = function() {
 			}]
 		}
 	];
-    
+
 }
