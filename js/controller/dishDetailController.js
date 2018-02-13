@@ -1,5 +1,6 @@
 
 var DishDetailController = function(view, model, app) {
+    "use strict";
 
     view.getContainer().on('click', '#addToMenuButton', function() {
         var chosenDishId = $(this).attr("chosenDish");

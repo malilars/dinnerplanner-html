@@ -15,7 +15,7 @@ var DinnerPrintoutView = function (container, model) {
                 .attr("class", "col-md-6")
                 .append(
                     $("<h1/>")
-                        .text("My Dinner: "+ model.getNumberOfGuests() + "people")
+                        .text("My Dinner: "+ model.getNumberOfGuests() + " people")
                 )
             )
             .append(

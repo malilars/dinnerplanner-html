@@ -1,5 +1,6 @@
 var DishDetailsView = function (container, model) {
-    
+
+    "use strict";
     this.currentDishId = null;
     model.addObserver(this);
     

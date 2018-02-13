@@ -2,8 +2,8 @@
 var DinnerModel = function() {
 
 
-	// default number of guests is 2	
-    var numberOfGuests = 2;
+	// default number of guests is 1
+    var numberOfGuests = 1;
 
 	//The selected dishes aka. "full menu"
 	var selectedDishes = [];
@@ -112,15 +112,11 @@ var DinnerModel = function() {
 
         var dishToAdd = this.getDish(parseInt(id));
 
-
-        console.log(dishToAdd);
         //is the dish-type already in selectedDishes?
         var alreadyExistingDish = this.getSelectedDish(dishToAdd.type);
 
-        console.log(alreadyExistingDish);
         if (alreadyExistingDish != null)
         {
-            console.log("den finns redan");
         	//if it exists, we must remove it before we keep on going
             this.removeDishFromMenu(alreadyExistingDish.id);
         }

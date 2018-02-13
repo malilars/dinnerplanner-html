@@ -1,5 +1,6 @@
 var MenuViewController = function(view, model, app) {
 
+    "use strict";
 
     // This will handle the change of numberofguest- select - form
     view.getSelectBox().change(function(){

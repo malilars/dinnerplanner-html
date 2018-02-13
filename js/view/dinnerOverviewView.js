@@ -7,8 +7,13 @@ var DinnerOverviewView = function(container, model) {
     function updateDinnerOverview() {
         var dishesOverview = container.find("#dishes-overview")
         dishesOverview.empty();
+
         var numberOfGuest = model.getNumberOfGuests();
-        
+
+        var numberOfGuestHeader = container.find("#numberOfGuestsHeader");
+        numberOfGuestHeader.text(numberOfGuest);
+
+
         var selectedDishes = model.getFullMenu();
 
         var selectedDishesDivCol = $("<div/>").attr("class", "col-md-8");
@@ -46,7 +51,7 @@ var DinnerOverviewView = function(container, model) {
 
         selectedDishesDivRow.append(
             $("<div/>")
-            .attr("class", "col-md-4")
+            .attr("class", "col-md-3")
             .append(
                 $("<h3/>").text("Total"))
             .append(
