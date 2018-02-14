@@ -43,7 +43,7 @@ var DinnerMenuView = function (container, model) {
        updateTable();
        
        //Update the "confirm dinner" button 
-       if(model.getFullMenu().lenght != 0){
+       if(model.getFullMenu().length != 0){
             container.find("#confirm-dinner-button").prop('disabled', false);
        };
     };
