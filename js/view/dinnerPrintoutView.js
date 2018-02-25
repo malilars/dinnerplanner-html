@@ -4,7 +4,7 @@ var DinnerPrintoutView = function (container, model) {
     model.addObserver(this);
     updatePrintoutView(container,model);
 
-    function updatePrintoutView(container,model){
+    function updatePrintoutView(){
         
        container.empty();
 
@@ -32,6 +32,7 @@ var DinnerPrintoutView = function (container, model) {
         var allDishDiv = $("<div/>").attr("class", "row");
         model.getFullMenu().forEach(function(dish){
 
+
             var dishDiv = $("<div/>").attr("class", "row");
 
             var imgDiv = $("<div/>")
@@ -47,17 +48,17 @@ var DinnerPrintoutView = function (container, model) {
                             $("<img/>")
                                 .addClass('img')
                                 .addClass('img-responsive')
-                                .attr('src', 'images/' + dish.image)
+                                .attr('src', dish.image)
                         ));
 
             var descDiv = $("<div/>")
                 .attr("class", "col-md-4")
                 .append(
                     $("<h2/>")
-                        .text(dish.name))
+                        .text(dish.title))
                         .append(
                             $("<p/>")
-                                .text(dish.description));
+                                .text(dish.instructions));
 
             var prepDiv = $("<div/>")
                 .attr("class", "col-md-6")
@@ -66,7 +67,7 @@ var DinnerPrintoutView = function (container, model) {
                             .text("Preparation"))
                             .append(
                                 $("<p/>")
-                                    .text(dish.description));
+                                    .text(dish.instructions));
 
 
             allDishDiv.append(dishDiv.append(imgDiv).append(descDiv).append(prepDiv)).append("<br>");
@@ -78,7 +79,7 @@ var DinnerPrintoutView = function (container, model) {
     // evoked when notifyObservers in model is called
     this.update = function ()
     {
-        updatePrintoutView(container, model);
+        updatePrintoutView();
     }
 
     this.getContainer = function()
@@ -86,6 +87,10 @@ var DinnerPrintoutView = function (container, model) {
         return container;
     }
 
+    function precisionRound(number, precision) {
+        var factor = Math.pow(10, precision);
+        return Math.round(number * factor) / factor;
+    }
     
 };
  

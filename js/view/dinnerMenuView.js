@@ -11,7 +11,7 @@ var DinnerMenuView = function (container, model) {
         // empty the old data
         tbody.empty();
 
-        var totalMenuPrice = model.getTotalMenuPrice();
+        var totalMenuPrice = precisionRound(model.getTotalMenuPrice(),0);
         var numberOfGuest = model.getNumberOfGuests();
 
         // loop over model.getFullMenu() and for each dish add it to the table
@@ -19,11 +19,11 @@ var DinnerMenuView = function (container, model) {
 
             //add a row to the table
             tbody.append(
-                $("<tr/>")
+                $("<tr/>").attr("class","dishOnMenu").attr("id", dish.id)
                     .append(
-                        $('<td/>').text(dish.name)
+                        $('<td/>').text(dish.title)
                     ).append(
-                        $('<td/>').text(numberOfGuest * model.getTotalDishPrice(dish))
+                        $('<td/>').text(precisionRound(numberOfGuest * model.getTotalDishPrice(dish),0))
                     )
             );
         });
@@ -42,10 +42,14 @@ var DinnerMenuView = function (container, model) {
     {
        updateTable();
        
-       //Update the "confirm dinner" button 
-       if(model.getFullMenu().length != 0){
+       //Update the "confirm dinner" button
+
+        if(model.getFullMenu().length === 0){
+             container.find("#confirm-dinner-button").prop('disabled', true);
+        }
+        else{
             container.find("#confirm-dinner-button").prop('disabled', false);
-       };
+        }
     };
 
     this.getConfirmDinnerButton = function(){
@@ -54,6 +58,15 @@ var DinnerMenuView = function (container, model) {
 
     this.getSelectBox = function(){
         return container.find("#numberOfGuests");
+    }
+
+    function precisionRound(number, precision) {
+        var factor = Math.pow(10, precision);
+        return Math.round(number * factor) / factor;
+    }
+
+    this.getContainer = function(){
+        return container;
     }
 
 };

@@ -8,6 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/style.css">
 
   </head>
   <body>
@@ -48,18 +49,7 @@
                     <hr/>
                     <div class="form-group">
                         <label for="numberOfGuests">Number of people</label>
-                        <select class="form-control" name="numberOfGuests" id="numberOfGuests">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
+                        <input type="number" class="form-control" value="1" min="1" id="numberOfGuests">
                     </div>
                     <table class="table" id="fullMenuTable">
                         <thead>
@@ -101,8 +91,15 @@
                                 <div class="form-group">
                                     <select class="form-control" name="" id="dish-type">
                                         <option value="starter">Starter</option>
-                                        <option value="main dish">Main course</option>
+                                        <option value="main course">Main course</option>
                                         <option value="dessert">Dessert</option>
+                                        <option value="antipasti">Antipasti</option>
+                                        <option value="snack">Snack</option>
+                                        <option value="appetizer">Appetizer</option>
+                                        <option value="fingerfood">Fingerfood</option>
+                                        <option value="lunch">Lunch</option>
+                                        <option value="dinner">Dinner</option>
+
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -114,9 +111,23 @@
                         </div>
                     </div>
                     <hr/>
-                    <div class="row" id="searchResults">
+                    <div class="col-md-12" id="searchResults">
                     </div>
+
+                    <div id="paginationDiv" class="row text-center" style="display:none;">
+                        <div>
+                            <button class="btn btn-primary" id="prevButton">Previous</button>
+                            <button class="btn btn-primary" id="nextButton">Next</button>
+                        </div>
+                        <h4>Showing <span id="pagFrom">1</span> - <span id="pagTo">12</span> of <span id="totalResult"></span> results</h4>
+                    </div>
+
                 </div>
+
+
+
+
+
                 <!-- end select-dish -->
             </div>
         </div>
@@ -153,8 +164,12 @@
         </div>
         <!-- end dinner printout-->
         
+       <!-- <button id="testbutton">test</button>-->
+        <!--SHALL BE REMOVED-->
 
-
+<!--        <div class="col-md-2" id="loadDiv">
+        <img src="images/slideload.gif" class="img-responsive">
+        </div>-->
 
 	</div>
 
@@ -162,6 +177,7 @@
     <script src="js/jquery.js"></script>
     <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
     <script src="js/bootstrap.min.js"></script>
+
 
 	<!-- The application JavaScript code -->
 	<script src="js/app.js"></script>
@@ -171,7 +187,7 @@
     <script src="js/controller/homeController.js"></script>
 
     <script src="js/view/selectDishView.js"></script>
-    <script src="js/controller/SelectDishController.js"></script>
+    <script src="js/controller/selectDishController.js"></script>
 
     <script src="js/view/dishDetailsView.js"></script>
     <script src="js/controller/dishDetailController.js"></script>

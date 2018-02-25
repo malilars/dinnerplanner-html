@@ -2,10 +2,11 @@ var MenuViewController = function(view, model, app) {
 
     "use strict";
 
-    // This will handle the change of numberofguest- select - form
+    // This will handle the change of numberofguest
     view.getSelectBox().change(function(){
-      //  alert("Körs det här?");
-        var numberOfGuests = $(this).find(":selected").text();
+
+        var numberOfGuests = $(this).val();
+
         model.setNumberOfGuests(numberOfGuests);
     });
     
@@ -15,5 +16,13 @@ var MenuViewController = function(view, model, app) {
         app.goToDinnerOverview();
 
     })
+
+
+    // if we want to remove a dish, we click on the name of the dish
+    view.getContainer().on('click', '.dishOnMenu', function() {
+        var dishId = $(this).attr('id');
+        model.removeDishFromMenu(dishId);
+    });
+
 
 };

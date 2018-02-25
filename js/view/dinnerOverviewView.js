@@ -5,6 +5,7 @@ var DinnerOverviewView = function(container, model) {
     model.addObserver(this);
     
     function updateDinnerOverview() {
+
         var dishesOverview = container.find("#dishes-overview")
         dishesOverview.empty();
 
@@ -22,7 +23,7 @@ var DinnerOverviewView = function(container, model) {
 
         selectedDishes.forEach(function(dish) {
 
-            var totDishPrice = model.getTotalDishPrice(dish) * model.getNumberOfGuests();
+            var totDishPrice = precisionRound(model.getTotalDishPrice(dish) * model.getNumberOfGuests(),0);
 
             var dishDiv = $("<div/>")
                 .attr("class", "col-md-3")
@@ -37,12 +38,12 @@ var DinnerOverviewView = function(container, model) {
                             $("<img/>")
                                 .addClass('img')
                                 .addClass('img-responsive')
-                                .attr('src', 'images/' + dish.image)
+                                .attr('src',  dish.image)
                         )
                     .append(
                         $("<figcaption/>")
                         .attr("class", "figure-caption")
-                        .text(dish.name)))
+                        .text(dish.title)))
                 .append(
                     $("<p/>").text(totDishPrice + " SEK"));
 
@@ -56,7 +57,7 @@ var DinnerOverviewView = function(container, model) {
                 $("<h3/>").text("Total"))
             .append(
                 $("<p/>")
-                .text(model.getTotalMenuPrice() + " SEK")));
+                .text(precisionRound(model.getTotalMenuPrice(),0) + " SEK")));
 
         selectedDishesDivCol.append(selectedDishesDivRow);      
         dishesOverview.append(selectedDishesDivCol);
@@ -79,6 +80,11 @@ var DinnerOverviewView = function(container, model) {
     this.getGoBackEditDinnerButton = function()
     {
         return container.find("#go-back-edit-dinner-button");
+    }
+
+    function precisionRound(number, precision) {
+        var factor = Math.pow(10, precision);
+        return Math.round(number * factor) / factor;
     }
 
 };

@@ -38,6 +38,7 @@ $(function() {
         selectDishElement.hide();
         dishDetailsElement.show();
         dishDetailsView.updateDishDetails(dishId);
+
     }
 
     this.goToSelectDish = function(viewElement){
@@ -58,5 +59,6 @@ $(function() {
         selectDishElement.hide();
         dinnerOverviewElement.show();
     }
+
 
 });
