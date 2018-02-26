@@ -39,7 +39,7 @@ var SelectDishController = function(selectDishView, model,app) {
         var pagDetails= selectDishView.getPaginationDetails();
 
         // checks if paginations (offset) dont get over the limit of totalresults
-        if ((pagDetails.offset + 12) < pagDetails.totalResults){
+        if ((pagDetails.offset + 12) <= pagDetails.totalResults){
             selectDishView.getContainer().find('#paginationDiv').hide();
             selectDishView.updateListOfDishes(pagDetails.type,pagDetails.filter,pagDetails.offset + 12);
         }
@@ -49,10 +49,11 @@ var SelectDishController = function(selectDishView, model,app) {
     // previous button, to adjust the offset
     selectDishView.getContainer().on('click', '#prevButton', function() {
 
+        console.log("hello");
         var pagDetails= selectDishView.getPaginationDetails();
 
         // checks if paginations (offset) dont get get under 0
-        if ((pagDetails.offset - 12) > 0 ){
+        if ((pagDetails.offset - 12) >= 0 ){
             selectDishView.getContainer().find('#paginationDiv').hide();
             selectDishView.updateListOfDishes(pagDetails.type,pagDetails.filter,pagDetails.offset - 12);
         }

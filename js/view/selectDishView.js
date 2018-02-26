@@ -15,6 +15,9 @@ var SelectDishView = function (container, model) {
             function(dishes){
             generateSearchResult(dishes);
 
+            console.log(dishes);
+            console.log(paginationDetails);
+
             // fix pagination details
             paginationDetails.offset = offset;
             paginationDetails.totalResults = dishes.totalResults;
