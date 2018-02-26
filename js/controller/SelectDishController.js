@@ -19,12 +19,12 @@ var SelectDishController = function(selectDishView, model,app) {
 
     // update paginationDiv, this is trigged from selectDishView.updateListOfDishes()
     selectDishView.getContainer().on('update', '#paginationDiv', function() {
-        var pagDetails = selectDishView.getPaginationDetails();
+        var lastSearchDetails = selectDishView.getLastSearchDetails();
 
         // if offset is 0 we want to display 1 to 10
-        var from = pagDetails.offset + 1;
-        var to = pagDetails.offset +12;
-        var total = pagDetails.totalResults;
+        var from = lastSearchDetails.offset + 1;
+        var to = lastSearchDetails.offset +12;
+        var total = lastSearchDetails.totalResults;
 
         $(this).find('#pagFrom').text(from);
         $(this).find('#pagTo').text(to);
@@ -36,12 +36,12 @@ var SelectDishController = function(selectDishView, model,app) {
     // nextbutton: To adjust the offset
     selectDishView.getContainer().on('click', '#nextButton', function() {
 
-        var pagDetails= selectDishView.getPaginationDetails();
+        var lastSearchDetails= selectDishView.getLastSearchDetails();
 
         // checks if paginations (offset) dont get over the limit of totalresults
-        if ((pagDetails.offset + 12) <= pagDetails.totalResults){
+        if ((lastSearchDetails.offset + 12) <= lastSearchDetails.totalResults){
             selectDishView.getContainer().find('#paginationDiv').hide();
-            selectDishView.updateListOfDishes(pagDetails.type,pagDetails.filter,pagDetails.offset + 12);
+            selectDishView.updateListOfDishes(lastSearchDetails.type,lastSearchDetails.filter,lastSearchDetails.offset + 12);
         }
 
     });
@@ -49,13 +49,13 @@ var SelectDishController = function(selectDishView, model,app) {
     // previous button, to adjust the offset
     selectDishView.getContainer().on('click', '#prevButton', function() {
 
-        console.log("hello");
-        var pagDetails= selectDishView.getPaginationDetails();
+
+        var lastSearchDetails= selectDishView.getLastSearchDetails();
 
         // checks if paginations (offset) dont get get under 0
-        if ((pagDetails.offset - 12) >= 0 ){
+        if ((lastSearchDetails.offset - 12) >= 0 ){
             selectDishView.getContainer().find('#paginationDiv').hide();
-            selectDishView.updateListOfDishes(pagDetails.type,pagDetails.filter,pagDetails.offset - 12);
+            selectDishView.updateListOfDishes(lastSearchDetails.type,lastSearchDetails.filter,lastSearchDetails.offset - 12);
         }
 
     });

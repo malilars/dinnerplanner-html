@@ -2,7 +2,7 @@ var SelectDishView = function (container, model) {
 
     "use strict";
 
-    var paginationDetails = {};
+    var lastSearchDetails = {};
 
 
     this.updateListOfDishes = function(type, filter, offset) {
@@ -16,13 +16,13 @@ var SelectDishView = function (container, model) {
             generateSearchResult(dishes);
 
             console.log(dishes);
-            console.log(paginationDetails);
+            console.log(lastSearchDetails);
 
-            // fix pagination details
-            paginationDetails.offset = offset;
-            paginationDetails.totalResults = dishes.totalResults;
-            paginationDetails.type = type;
-            paginationDetails.filter = filter;
+            // fix last search details
+            lastSearchDetails.offset = offset;
+            lastSearchDetails.totalResults = dishes.totalResults;
+            lastSearchDetails.type = type;
+            lastSearchDetails.filter = filter;
 
             // trigger update so controller can change the paginationdiv
             container.find('#paginationDiv').trigger('update');
@@ -93,8 +93,8 @@ var SelectDishView = function (container, model) {
     };
 
 
-    this.getPaginationDetails = function(){
-        return paginationDetails;
+    this.getLastSearchDetails = function(){
+        return lastSearchDetails;
     }
 
     this.getContainer = function(){
